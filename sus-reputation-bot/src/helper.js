@@ -13,4 +13,11 @@ function bytesToHex(bytes) {
     return hex.join("");
 }
 
-module.exports = {hexToBytes, bytesToHex };
+async function isContract(address, ethProvider) {
+    let code = await ethProvider.getCode(String(address));
+
+    return "0x" !== code;
+
+}
+
+module.exports = {hexToBytes, bytesToHex, isContract};
